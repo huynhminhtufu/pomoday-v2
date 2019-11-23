@@ -26,6 +26,7 @@ const parseVisibilityCommand = (str: string) =>
   str.match(
     /^(hide|show)\s\b(done|finished|wait|pending|ongoing|wip|flag|flagged)\b/i,
   );
+const parseExportCommand = (str: string) => str.match(/^(ex|export)/i);
 const parseOtherCommand = (str: string) =>
   str.match(/^(close-help|help|today|dark|light|customize|list-archived)/i);
 export const parseCommand = (input: string): Command => {
@@ -58,6 +59,15 @@ export const parseCommand = (input: string): Command => {
 
   const matchTagRe = parseTagRenameCommand(input);
   if (matchTagRe) {
+    return {
+      command: matchTagRe[1],
+      tag: matchTagRe[2] + ' ' + matchTagRe[3],
+    } as Command;
+  }
+
+  const matchEx = parseExportCommand(input);
+  if (matchEx) {
+    console.log(matchEx);
     return {
       command: matchTagRe[1],
       tag: matchTagRe[2] + ' ' + matchTagRe[3],
