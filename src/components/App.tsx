@@ -19,7 +19,7 @@ const defaultState = {
   tasks: [] as TaskItem[],
   showHelp: true,
   showToday: false,
-  darkMode: false,
+  darkMode: true,
   sawTheInput: false,
   taskVisibility: {
     done: true,
